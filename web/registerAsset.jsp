@@ -14,5 +14,8 @@
     <body>
         <!--TODO/-->
         <!--Provide input box for entering of variables/-->
+        <form name="register" action="registerAssetSave.jsp" method="POST">
+            
+        </form>
     </body>
 </html>
