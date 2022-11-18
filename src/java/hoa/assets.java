@@ -26,13 +26,12 @@ public class assets {
     
     // constructor
     public assets(){
-        // TODO 
-        // initialize the variable
+        
     }
     
     public int addAsset() {
         // TODO
-        // code below are not yet completed
+        // insert all variable to the table
         try {
             Connection con;
             // <> contain databse name
@@ -56,7 +55,7 @@ public class assets {
     
     public int modAsset() {
         // TODO
-        // modify asset
+        // update the table based on the varaible
         // code below are not yet completed
         try {
             Connection con;
@@ -80,6 +79,7 @@ public class assets {
     
     public int deleteAsset() {
         // TODO
+        // database name
         // delete asset
         try {
             Connection con;
@@ -89,7 +89,7 @@ public class assets {
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, assetID);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
@@ -102,6 +102,7 @@ public class assets {
     
     public int viewAsset() {
         // TODO
+        // complete thewhile part code
         // view record
         try {
             Connection con;
@@ -111,12 +112,23 @@ public class assets {
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, assetID);
             
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                variable = rs.getString("variable name");
-                variable = rs.getInt("variable name");
+                assetID = rs.getInt("assetID");
+                hoa_owner = rs.getString("hoa_owner");
+                asset_type = 
+                asset_desc;
+                asset_name;
+                aquisition_date;
+                for_rent;
+                asset_value;
+                asset_status;
+                asset_locX;
+                asset_locY;
+                containing_asset;
+
             }
             
             pstmt.executeUpdate();

@@ -11,4 +11,21 @@ package hoa;
  */
 public class activityAction {
     
+    
+    //TODO
+    public int record() {
+        return 1;
+    }
+    
+    public int update() {
+        return 1;
+    }
+    
+    public int complete() {
+        return 1;
+    }
+    
+    public int delete() {
+        return 1;
+    }
 }

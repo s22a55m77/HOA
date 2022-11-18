@@ -11,4 +11,20 @@ package hoa;
  */
 public class assetAction {
     
+    //TODO
+    public int register() {
+        return 1;
+    }
+    
+    public int update() {
+        return 1;
+    }
+    
+    public int delete() {
+        return 1;
+    }
+    
+    public int dispose() {
+        return 1;
+    }
 }
