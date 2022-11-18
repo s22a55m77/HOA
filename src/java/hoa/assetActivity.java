@@ -5,10 +5,115 @@
  */
 package hoa;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author ccslearner
  */
 public class assetActivity {
+    // TODO
+    // viriables
     
+    
+    // constructor
+    public assetActivity(){
+        // TODO 
+        // initialize the variable
+    }
+    
+    public int addAssetActivity() {
+        // TODO
+        // code below are not yet completed
+        try {
+            Connection con;
+            // <> contain databse name
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            // wait for database to be released to know the variables
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO assets (<variable>) VALUES (?)");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, 3);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on asset, addAsset" + e.getMessage());
+            return 0;
+        }
+        
+    }
+    
+    public int modAssetActivity() {
+        // TODO
+        // modify asset
+        // code below are not yet completed
+        try {
+            Connection con;
+            // <> contain databse name
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            // wait for database to be released to know the variables
+            PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET variable=?, variable=? WHERE assetID=?");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, 3);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on asset, addAsset" + e.getMessage());
+            return 0;
+        }
+    }
+    
+    public int deleteAssetActivity() {
+        // TODO
+        // delete asset
+        try {
+            Connection con;
+            // <> contain databse name
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM WHERE assetID=?");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, 3);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on asset, addAsset" + e.getMessage());
+            return 0;
+        }
+    }
+    
+    public int viewAssetActivity() {
+        // TODO
+        // view record
+        try {
+            Connection con;
+            // <> contain databse name
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM WHERE assetID=?");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, 3);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on asset, addAsset" + e.getMessage());
+            return 0;
+        }
+    }
 }
