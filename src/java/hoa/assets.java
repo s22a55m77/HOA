@@ -75,7 +75,7 @@ public class assets {
             Connection con;
             // <> contain databse name
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM assets WHERE assetID=?");
 
             // first param = place of questionmark
             // second param = value
@@ -97,11 +97,18 @@ public class assets {
             Connection con;
             // <> contain databse name
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM assets WHERE assetID=?");
 
             // first param = place of questionmark
             // second param = value
             pstmt.setInt(1, 3);
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                variable = rs.getString("variable name");
+                variable = rs.getInt("variable name");
+            }
+            
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
