@@ -16,14 +16,24 @@ import java.sql.SQLException;
  * @author ccslearner
  */
 public class assetActivity {
-    // TODO
-    // viriables
+    public int assetID;
+    public String activity_date;
+    public String activity_description;
+    public int authorizingOfficer;
+    public String tentative_sdate;
+    public String tentative_edate;
+    public String actual_sdate;
+    public String actual_edate;
+    public double cost;
+    public int ORnumber;
+    public char status;
+    public int authorizing_president;
     
     
     // constructor
     public assetActivity(){
         // TODO 
-        // initialize the variable
+        // insert all variable
     }
     
     public int addAssetActivity() {
@@ -59,7 +69,7 @@ public class assetActivity {
             // <> contain databse name
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             // wait for database to be released to know the variables
-            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET variable=?, variable=? WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET variable=?, variable=? WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
@@ -81,7 +91,7 @@ public class assetActivity {
             Connection con;
             // <> contain databse name
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM asset_activities WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
@@ -103,7 +113,7 @@ public class assetActivity {
             Connection con;
             // <> contain databse name
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM asset_activities WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value

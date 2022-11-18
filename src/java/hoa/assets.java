@@ -10,9 +10,19 @@ import java.sql.*;
  * @author ccslearner
  */
 public class assets {
-    // TODO
     // viriables
-    
+    public int assetID;
+    public String hoa_owner;
+    public char asset_type;
+    public String asset_desc;
+    public String asset_name;
+    public String aquisition_date;
+    public boolean for_rent;
+    public double asset_value;
+    public char asset_status;
+    public double asset_locX;
+    public double asset_locY;
+    public int containing_asset;
     
     // constructor
     public assets(){
