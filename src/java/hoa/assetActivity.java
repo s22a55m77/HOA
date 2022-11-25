@@ -16,6 +16,15 @@ import java.sql.SQLException;
  * @author ccslearner
  */
 public class assetActivity {
+    
+    
+    //ENUM of status
+    enum Status{
+        Scheduled,
+        Ongoing,
+        Completed
+    }
+    
     public int assetID;
     public String activity_date;
     public String activity_description;
@@ -26,106 +35,145 @@ public class assetActivity {
     public String actual_edate;
     public double cost;
     public int ORnumber;
-    public char status;
+    public Status status;
     public int authorizing_president;
     
     
     // constructor
     public assetActivity(){
-        // TODO 
-        // insert all variable
+        
+    }
+    
+    //getter of enum
+    private Status getStatus(String string){
+        switch(string){
+            case "Scheduled":
+                return Status.Scheduled;
+            case "Ongoing":
+                return Status.Ongoing;
+            case "Completed":
+                return Status.Completed;
+            default:
+                return null;
+        }
     }
     
     public int addAssetActivity() {
-        // TODO
-        // code below are not yet completed
         try {
             Connection con;
-            // <> contain databse name
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            // wait for database to be released to know the variables
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (<variable>) VALUES (?)");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (assetID, activity_date, activity_description, authorizingOfficer"
+                    + "tentative_sdate, tentative_edate, actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, assetID);
+            pstmt.setString(2, activity_date);
+            pstmt.setString(3, activity_description);
+            pstmt.setInt(4, authorizingOfficer);
+            pstmt.setString(5, tentative_sdate);
+            pstmt.setString(6, tentative_edate);
+            pstmt.setString(7, actual_sdate);
+            pstmt.setString(8, actual_edate);
+            pstmt.setDouble(9, cost);
+            pstmt.setInt(10, ORnumber);
+            pstmt.setString(11, status.name());
+            pstmt.setInt(12, authorizing_president);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on assetActivity, addAssetActivity" + e.getMessage());
             return 0;
         }
         
     }
     
     public int modAssetActivity() {
-        // TODO
         // modify asset
-        // code below are not yet completed
         try {
             Connection con;
-            // <> contain databse name
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            // wait for database to be released to know the variables
-            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET variable=?, variable=? WHERE assetID=? AND activity_date=?");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET activity_description=?, authorizingOfficer=?, tentative_sdate=?, tentative_edate=?,"
+                    + "actual_sdate=?, actual_edate=?, cost=?, ORnumber=?, status=?, authorizing_president=? "
+                    + "WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setString(1, activity_description);
+            pstmt.setInt(2, authorizingOfficer);
+            pstmt.setString(3, tentative_sdate);
+            pstmt.setString(4, tentative_edate);
+            pstmt.setString(5, actual_sdate);
+            pstmt.setString(6, actual_edate);
+            pstmt.setDouble(7, cost);
+            pstmt.setInt(8, ORnumber);
+            pstmt.setString(9, status.name());
+            pstmt.setInt(10, authorizing_president);
+            pstmt.setInt(11, assetID);
+            pstmt.setString(12, activity_date);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on assetActivity, modAssetActivity" + e.getMessage());
             return 0;
         }
     }
     
     public int deleteAssetActivity() {
-        // TODO
         // delete asset
         try {
             Connection con;
-            // <> contain databse name
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, assetID);
+            pstmt.setString(2, activity_date);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on assetActivity, deleteAssetActivity" + e.getMessage());
             return 0;
         }
     }
     
     public int viewAssetActivity() {
-        // TODO
         // view record
         try {
             Connection con;
-            // <> contain databse name
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/<>?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setInt(1, 3);
+            pstmt.setInt(1, assetID);
+            pstmt.setString(2, activity_date);
             
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                variable = rs.getString("variable name");
-                variable = rs.getInt("variable name");
+                assetID = rs.getInt("assetID");
+                activity_date = rs.getString("activity_date");
+                activity_description = rs.getString("activity_description");
+                authorizingOfficer = rs.getInt("assetID");;
+                tentative_sdate = rs.getString("tentative_sdate");
+                tentative_edate = rs.getString("tentative_edate");
+                actual_sdate = rs.getString("actual_sdate");
+                actual_edate = rs.getString("actual_edate");
+                cost = rs.getDouble("cost");
+                ORnumber = rs.getInt("ORnumber");
+                status = getStatus(rs.getString("status"));
+                authorizing_president = rs.getInt("authorizing_president");
             }
             
-            pstmt.executeUpdate();
+            rs.close();
             pstmt.close();
             con.close();
             return 1;
