@@ -29,7 +29,7 @@ public class assets {
     }
     
     // viriables
-    public int assetID;
+    int assetID;
     public String hoa_owner;
     public Type asset_type;
     public String asset_desc;
