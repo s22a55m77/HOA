@@ -117,7 +117,6 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            // wait for database to be released to know the variables
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO assets (assetID, hoa_owner, asset_type, asset_desc, "
                     + "asset_name, aquisition_date, for_rent, asset_value, asset_status, asset_locX, asset_locY, containing_asset) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -152,7 +151,6 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            // wait for database to be released to know the variables
             PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET hoa_owner=?, asset_type=?, asset_desc=?, asset_name=?, aquisition_date=?, "
                     + "for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?, containing_asset=? "
                     + "WHERE assetID=?");
@@ -176,7 +174,7 @@ public class assets {
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on asset, modAsset" + e.getMessage());
             return 0;
         }
     }
