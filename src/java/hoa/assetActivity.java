@@ -62,7 +62,7 @@ public class assetActivity {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (assetID, activity_date, activity_description, authorizingOfficer"
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (assetID, activity_date, activity_description, authorizingOfficer, "
                     + "tentative_sdate, tentative_edate, actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
