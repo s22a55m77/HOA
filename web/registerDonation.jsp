@@ -9,9 +9,52 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Record Donation</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
+        <% assetBean.getAssetIDs();                                                 %>
+        <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
+        <% assetActivityBean.getOfficer();                                                 %>
+        <form name="register_asset_activity" action="registerDonationSave.jsp" method="POST">
+        
+            <div>
+                Select Asset that was donated
+                <select name="assetID" id="assetID">
+                    <% for (int i=0; i<assetBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+            
+            <div>Enter Donor Complete Name <input type="text" name="donor_completename" id="donor_completename"><br></div>
+            <div>Enter Donor Address <input type="text" name="donor_address" id="donor_address"><br></div>
+            <div>Enter Amount <input type="text" name="amount" id="amount"><br></div>
+            <div>Enter Filename <input type="text" name="donorsform_filename" id="donorsform_filename"><br></div>
+            <div>Enter Date YYYY-MM-DD <input type="text" name="donation_date" id="donation_date"><br></div>
+            
+            <div>
+                Select Accepting Officer
+                <select name="acceptingOfficer" id="officers">
+                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
+                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerID%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+
+            <div>
+                Select Authorizing President
+                <select name="authorizing_president" id="officers">
+                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
+                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerID%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+            
+            <input type="submit" value="Register Donation" name="registerDonation">
+        </form>
     </body>
 </html>

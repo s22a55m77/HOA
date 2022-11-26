@@ -5,12 +5,36 @@
  */
 package hoa;
 
+import java.sql.*;
+import java.util.*;
+
 /**
  *
  * @author ccslearner
  */
 public class assetAction {
+    public ArrayList<Integer> assetID = new ArrayList<>();
     
+    
+    public int getAssetIDs() {
+        try {
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT assetID FROM assets");
+            ResultSet rs = sqlstatement.executeQuery();
+            assetID.clear();
+            while (rs.next()) {
+                assetID.add(rs.getInt("assetID"));
+            }
+            sqlstatement.close();
+            conn.close();
+            return 1;    
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+        
+    }
     //TODO
     public int register() {
         return 1;
