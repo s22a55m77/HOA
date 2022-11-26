@@ -92,7 +92,7 @@ public class assetActivity {
     }
     
     public int modAssetActivity() {
-        // modify asset
+        // modify asset_activities
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
@@ -125,7 +125,7 @@ public class assetActivity {
     }
     
     public int deleteAssetActivity() {
-        // delete asset
+        // delete asset_activities
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
