@@ -204,7 +204,9 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM assets WHERE assetID=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT assetID, hoa_owner, asset_type, asset_desc, asset_name, aquisition_date, "
+                    + "for_rent, asset_value, asset_status, asset_locX, asset_locY, containing_asset "
+                    + "FROM assets WHERE assetID=?");
 
             // first param = place of questionmark
             // second param = value
@@ -223,7 +225,7 @@ public class assets {
                 asset_status = getStatus(rs.getString("asset_status"));
                 asset_locX = rs.getDouble("asset_locX");
                 asset_locY = rs.getDouble("asset_locY");
-                containing_asset = rs.getInt(containing_asset);
+                containing_asset = rs.getInt("containing_asset");
 
             }
             rs.close();
