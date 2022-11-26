@@ -182,33 +182,4 @@ public class assetActivity {
             return 0;
         }
     }
-    
-    public int test() {
-        try {
-            Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (assetID, activity_date) "
-                    + "VALUES (?,?)");
-
-            // first param = place of questionmark
-            // second param = value
-            pstmt.setInt(1, assetID);
-            pstmt.setString(2, activity_date);
-            pstmt.executeUpdate();
-            pstmt.close();
-            con.close();
-            return 1;
-        } catch (SQLException e) {
-            System.out.println("error on assetActivity, addAssetActivity" + e.getMessage());
-            return 0;
-        }
-        
-    }
-    
-    public static void main(String args[]) {
-        assetActivity test = new assetActivity();
-        test.assetID = 1001;
-        test.activity_date = "2022-01-31";
-        test.test();
-    }
 }
