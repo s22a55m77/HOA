@@ -5,13 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*, java.util.*, hoa.*"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Submit Delete Donor</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="donationActionBean" class="hoa.donationAction" scope="session" />
+        <% int assetID = 0;                %>
+        <% String s_assetID = request.getParameter("assetID");                  %>
+        <% assetID = Integer.parseInt(s_assetID);                                %>
+        <div><span value="<%=assetID%>"></span></div> 
+        <% //donationActionBean.del(assetID);                       %>
+        Activity was submitted<br>
+        <a href="index.html">Go back to Main Menu</a>
     </body>
 </html>
