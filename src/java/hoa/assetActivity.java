@@ -150,7 +150,9 @@ public class assetActivity {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT variable FROM asset_activities WHERE assetID=? AND activity_date=?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT assetID, activity_date, activity_description, assetID, tentative_sdate, tentative_edate, "
+                    + "actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president "
+                    + "FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
