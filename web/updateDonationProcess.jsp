@@ -5,13 +5,66 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*, java.util.*, hoa.*"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update Donation</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
+        <% assetActivityBean.getOfficer();    %>
+       <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
+        <%
+            int assetID;
+            String s_assetID = request.getParameter("assetID");
+            assetID = Integer.parseInt(s_assetID);
+            donation donation = donationBean.getDonation(assetID);
+        %>
+        
+        <form name="update_donation" action="updateDonationSave.jsp" method="POST">
+            <div>
+                Select Asset that was donated
+                <select name="assetID" id="assetID">
+                    <option value ="<%=assetID%>"><%=assetID%></option>
+                </select>
+            </div>
+            
+            <div>Enter Donor Complete Name <input type="text" name="donor_completename" id="donor_completename" value="<%=donation.donor_completename%>"><br></div>
+            <div>Enter Donor Address <input type="text" name="donor_address" id="donor_address" value="<%=donation.donor_address%>"><br></div>
+            <div>Enter Amount <input type="text" name="amount" id="amount" value="<%=donation.amount%>" ><br></div>
+            <div>Enter Donor's form Filename <input type="text" name="donorsform_filename" id="donorsform_filename" value="<%=donation.donorsform_filename%>"><br></div>
+            <div>Enter Date YYYY-MM-DD <input type="text" name="donation_date" id="donation_date" value="<%=donation.donation_date%>"><br></div>
+            
+            <div>
+                Select Accepting Officer
+                <select name="acceptingOfficer" id="officers">
+                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
+                    <%     int officerID = assetActivityBean.officers.get(i);                    
+                     if (officerID == donation.acceptingOfficer) {%>
+                        <option value ="<%=officerID%>" selected="selected"><%=officerID%></option>
+                    <% } %>  
+                    <option value ="<%=officerID%>"><%=officerID%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+
+            <div>
+                Select Authorizing President
+                <select name="authorizing_president" id="officers">
+                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
+                    <%     int officerID = assetActivityBean.officers.get(i);  
+                           if (officerID == donation.authorizing_president) {%>
+                        <option value ="<%=officerID%>" selected="selected"><%=officerID%></option>
+                    <% }                                                     %>
+                    
+                    <option value ="<%=officerID%>" ><%=officerID%></option>
+                    <% }                                                     %>
+                </select>
+            </div> 
+            
+            <input type="submit" value="Update Donation" name="registerDonation">
+        </form>
     </body>
 </html>
