@@ -21,8 +21,10 @@ import java.sql.*;
 public class donationAction {
     public ArrayList<Integer> donations = new ArrayList<Integer>();
     
+    
     public int getDonations() {
       try {
+           
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID FROM asset_donation;");
@@ -74,5 +76,25 @@ public class donationAction {
         donation.authorizing_president = authorizing_president;
         
         donation.addDonation();
+    }
+    
+    public int savePicture(int assetID, String filename) {
+        try {
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO donation_pictures (assetID, filename) VALUES (?, ?)");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, assetID);
+            pstmt.setString(2, filename);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on asset, addAsset" + e.getMessage());
+            return 0;
+        }
     }
 }

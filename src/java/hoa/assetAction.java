@@ -17,6 +17,7 @@ public class assetAction {
     
     
     public int getAssetIDs() {
+        assetID.clear();
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
