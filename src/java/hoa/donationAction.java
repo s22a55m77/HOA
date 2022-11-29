@@ -21,7 +21,6 @@ import java.sql.*;
 public class donationAction {
     public ArrayList<Integer> donations = new ArrayList<Integer>();
     
-    
     public int getDonations() {
       try {
            
@@ -30,6 +29,7 @@ public class donationAction {
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID FROM asset_donation;");
             
             ResultSet rs = pstmt.executeQuery();
+            donations.clear();
             while (rs.next()) {
                 int assetID = rs.getInt("assetID");
                 donations.add(assetID);
