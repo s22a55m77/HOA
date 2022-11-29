@@ -102,6 +102,7 @@ public class donationAction {
         donation donation = new donation();
         donation.assetID=assetID;
         
+        donation.viewDonation();
         return donation;
     }
 }
