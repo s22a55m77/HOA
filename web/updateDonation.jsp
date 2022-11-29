@@ -9,9 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update Donation</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
+        <%  donationBean.donations.clear();
+            donationBean.getDonations(); %>
+        <form name="update_donation_select" action="updateDonationProcess.jsp" method="POST">
+            
+            <div>
+                Select Asset
+                <select name="assetID" id="assetID">
+                    <% for (int i=0; i<donationBean.donations.size(); i++) {     %>
+                    <%     int assetID = donationBean.donations.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+            <input type="submit" value="Select" name="update_donation_select">
+        </form>
     </body>
 </html>

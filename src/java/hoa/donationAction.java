@@ -97,4 +97,11 @@ public class donationAction {
             return 0;
         }
     }
+    
+    public donation getDonation(int assetID) {
+        donation donation = new donation();
+        donation.assetID=assetID;
+        
+        return donation;
+    }
 }

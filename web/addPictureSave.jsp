@@ -13,6 +13,8 @@
         <title>Save Donation Picture</title>
     </head>
     <body>
+        <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
+        <% assetActivityBean.getOfficer();    %>
         <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
         <%
             int assetID;
