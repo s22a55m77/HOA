@@ -18,8 +18,8 @@
         <% String s_assetID = request.getParameter("assetID");                  %>
         <% assetID = Integer.parseInt(s_assetID);                                %>
         <div><span value="<%=assetID%>"></span></div> 
-        <% //donationActionBean.del(assetID);                       %>
-        Activity was submitted<br>
+        <% donationActionBean.delDonor(assetID);                       %>
+        Donor Information was successfully deleted<br>
         <a href="index.html">Go back to Main Menu</a>
     </body>
 </html>
