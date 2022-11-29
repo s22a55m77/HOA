@@ -41,7 +41,6 @@ public class activityAction {
     ) {
         assetActivity test = new assetActivity();
         test.assetID = authorizing_president;
-        test.test();
         return 1;
     }
     
