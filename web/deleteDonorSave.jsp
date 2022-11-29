@@ -17,7 +17,6 @@
         <% int assetID = 0;                %>
         <% String s_assetID = request.getParameter("assetID");                  %>
         <% assetID = Integer.parseInt(s_assetID);                                %>
-        <div><span value="<%=assetID%>"></span></div> 
         <% donationActionBean.delDonor(assetID);                       %>
         Donor Information was successfully deleted<br>
         <a href="index.html">Go back to Main Menu</a>

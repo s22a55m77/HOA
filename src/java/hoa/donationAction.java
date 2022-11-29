@@ -21,6 +21,10 @@ import java.sql.*;
 public class donationAction {
     public ArrayList<Integer> donations = new ArrayList<Integer>();
     
+    public class newDonation extends donation {
+            String s_acceptingOfficer;
+    };
+    
     public int getDonations() {
       try {
            
@@ -40,7 +44,7 @@ public class donationAction {
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on donation, viewDonation" + e.getMessage());
+            System.out.println("error on donation action, getDonations" + e.getMessage());
             return 0;
         }
     };
@@ -49,7 +53,7 @@ public class donationAction {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_donation SET donor_completename=null, donor_address=null WHERE assetID = ?;");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_donation SET deleted=1 WHERE assetID = ?;");
             
             pstmt.setInt(1, assetID);
             pstmt.executeUpdate();
@@ -57,7 +61,7 @@ public class donationAction {
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on donation, viewDonation" + e.getMessage());
+            System.out.println("error on donation action, delDonor" + e.getMessage());
             return 0;
         }
     };
@@ -93,16 +97,18 @@ public class donationAction {
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on donation action, savePicture" + e.getMessage());
             return 0;
         }
     }
     
-    public donation getDonation(int assetID) {
-        donation donation = new donation();
+    public donation getDonation(int assetID) {   
+        
+        newDonation donation = new newDonation();
         donation.assetID=assetID;
         
         donation.viewDonation();
         return donation;
     }
+   
 }

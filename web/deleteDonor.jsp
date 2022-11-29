@@ -14,7 +14,7 @@
     <body>
         <jsp:useBean id="donationActivityBean" class="hoa.donationAction" scope="session" />
         <% donationActivityBean.getDonations();                                                 %>
-        <form name="delete_donor" action="deleteDonorSave.jsp" method="POST">
+        <form name="delete_donor" action="deleteDonorProcess.jsp" method="POST">
             <div>
                 Select which asset of donor information you want to delete
                 <select name="assetID" id="assetID">
@@ -25,7 +25,7 @@
                 </select>
             </div>
 
-            <input type="submit" value="deleteDonor" name="deleteDonor">
+            <input type="submit" value="Next" name="deleteDonor">
         </form>
     </body>
 </html>
