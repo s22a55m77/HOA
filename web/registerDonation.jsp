@@ -15,8 +15,8 @@
         <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
         <% assetBean.getAssetIDs();                                                 %>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
-        <% assetActivityBean.getOfficer();                                                 %>
-        <form name="register_asset_activity" action="registerDonationSave.jsp" method="POST">
+        <% assetActivityBean.getOfficer();    %>
+        <form name="register_donation" action="registerDonationSave.jsp" method="POST">
         
             <div>
                 Select Asset that was donated
@@ -31,7 +31,7 @@
             <div>Enter Donor Complete Name <input type="text" name="donor_completename" id="donor_completename"><br></div>
             <div>Enter Donor Address <input type="text" name="donor_address" id="donor_address"><br></div>
             <div>Enter Amount <input type="text" name="amount" id="amount"><br></div>
-            <div>Enter Filename <input type="text" name="donorsform_filename" id="donorsform_filename"><br></div>
+            <div>Enter Donor's form Filename <input type="text" name="donorsform_filename" id="donorsform_filename"><br></div>
             <div>Enter Date YYYY-MM-DD <input type="text" name="donation_date" id="donation_date"><br></div>
             
             <div>
@@ -52,9 +52,12 @@
                     <option value ="<%=officerID%>"><%=officerID%></option>
                     <% }                                                     %>
                 </select>
-            </div>
+            </div> 
             
             <input type="submit" value="Register Donation" name="registerDonation">
         </form>
+                
+                
+        
     </body>
 </html>
