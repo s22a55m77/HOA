@@ -13,8 +13,7 @@
     </head>
     <body>
         <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
-        <% assetBean.assetID.clear();
-            assetBean.getAssetIDs();                                                 %>
+        <% assetBean.getAssetIDs();                                                 %>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
         <% assetActivityBean.getOfficer();    %>
         <form name="register_donation" action="registerDonationSave.jsp" method="POST">

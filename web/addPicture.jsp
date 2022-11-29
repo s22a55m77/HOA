@@ -13,8 +13,7 @@
     </head>
     <body>
         <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
-        <%  donationBean.donations.clear();
-            donationBean.getDonations(); %>
+        <% donationBean.getDonations(); %>
         <form name="add_picture" action="addPictureSave.jsp" method="POST">
             
             <div>
