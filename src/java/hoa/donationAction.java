@@ -82,6 +82,22 @@ public class donationAction {
         donation.addDonation();
     }
     
+    public void update(int assetID, String donor_completename, String donor_address,
+                       double amount, int acceptingOfficer, String donorsform_filename,
+                       String donation_date, int authorizing_president) {
+        donation donation = new donation();
+        donation.assetID = assetID;
+        donation.donor_completename = donor_completename;
+        donation.donor_address = donor_address;
+        donation.amount = amount;
+        donation.acceptingOfficer = acceptingOfficer;
+        donation.donorsform_filename = donorsform_filename;
+        donation.donation_date = donation_date;
+        donation.authorizing_president = authorizing_president;
+        
+        donation.modDonation();
+    }
+    
     public int savePicture(int assetID, String filename) {
         try {
             Connection con;

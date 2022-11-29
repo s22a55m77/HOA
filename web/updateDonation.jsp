@@ -13,10 +13,11 @@
     </head>
     <body>
         <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
-        <%  donationBean.donations.clear();
+        <%
             donationBean.getDonations(); %>
-        <form name="update_donation_select" action="updateDonationProcess.jsp" method="POST">
             
+            
+        <form name="update_donation_select" action="updateDonationProcess.jsp" method="POST">
             <div>
                 Select Asset
                 <select name="assetID" id="assetID">
@@ -28,5 +29,7 @@
             </div>
             <input type="submit" value="Select" name="update_donation_select">
         </form>
+                
+                
     </body>
 </html>
