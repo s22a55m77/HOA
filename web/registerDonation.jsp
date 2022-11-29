@@ -15,6 +15,7 @@
         <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
         <% assetBean.getAssetIDs();                                                 %>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
+        <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
         <% assetActivityBean.getOfficer();    %>
         <form name="register_donation" action="registerDonationSave.jsp" method="POST">
         
@@ -39,7 +40,7 @@
                 <select name="acceptingOfficer" id="officers">
                     <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
                     <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerID%></option>
+                    <option value ="<%=officerID%>"><%=officerActionBean.getNameForOfficer(officerID)%></option>
                     <% }                                                     %>
                 </select>
             </div>
@@ -49,7 +50,7 @@
                 <select name="authorizing_president" id="officers">
                     <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
                     <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerID%></option>
+                    <option value ="<%=officerID%>"><%=officerActionBean.getNameForOfficer(officerID)%></option>
                     <% }                                                     %>
                 </select>
             </div> 
