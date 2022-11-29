@@ -117,7 +117,7 @@ public class donation {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID, donor_completename, donor_address, amount, acceptingOfficer, donorsform_filename, "
                     + "donation_date, deleted, authorizing_president "
-                    + "FROM asset_activities WHERE assetID=?");
+                    + "FROM asset_donation WHERE assetID=?");
 
             // first param = place of questionmark
             // second param = value
@@ -135,7 +135,6 @@ public class donation {
                 deleted = rs.getBoolean("deleted");
                 authorizing_president = rs.getInt("authorizing_president");
             }
-            
             rs.close();
             pstmt.close();
             con.close();
