@@ -20,7 +20,6 @@
             String filename = request.getParameter("filename");
             assetID = Integer.parseInt(s_assetID);
         %>
-        <div><span value="<%=filename%>"/></div>
         <%   donationBean.savePicture(assetID, filename); %>
         
         
