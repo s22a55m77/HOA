@@ -19,7 +19,7 @@ public class officerAction {
     public String lastname;
     public String firstname;
     
-    public String getName(int ID) {
+    public String getNameForAssetDonation(int ID) {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
@@ -37,13 +37,36 @@ public class officerAction {
             
             return lastname + " " + firstname;
         } catch (SQLException e) {
-            System.out.println("error on officerAction, getName" + e.getMessage());
+            System.out.println("error on officerAction, getNameForAssetDonation" + e.getMessage());
+            return "";
+        }
+    }
+    
+    public String getNameForOfficer(int ID) {
+        System.out.println(ID);
+        try {
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname\n" +
+                                                            "FROM users u JOIN ho ON ho.hoID=u.userID\n" +
+                                                            "             JOIN officer o ON o.hoID=ho.hoID\n" +
+                                                            "WHERE o.officerID = ?;");
+            pstmt.setInt(1, ID);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                lastname = rs.getString("u.lastname");
+                firstname = rs.getString("u.firstname");
+            }
+            
+            return lastname + " " + firstname;
+        } catch (SQLException e) {
+            System.out.println("error on officerAction, getNameForOfficer" + e.getMessage());
             return "";
         }
     }
     
     public static void main (String args[]) {
-        officerAction o = new officerAction();
-        o.getName(1000004);
+        //officerAction o = new officerAction();
+        //o.getName(1000004);
     }
 }
