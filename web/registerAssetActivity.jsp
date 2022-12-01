@@ -13,29 +13,66 @@
     </head>
     <body>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
-        <% assetActivityBean.getOfficer();                                                 %>
+        <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
+        <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
+        <jsp:useBean id="ornumberActionBean" class="hoa.ornumberAction" scope="session" />
+        <% assetBean.getAssetIDs();                                                 
+           assetActivityBean.getOfficer();
+           officerActionBean.getNameForOfficer();
+           ornumberActionBean.getORnumber();
+        %>
         <form name="register_asset_activity" action="registerAssetActivitySave.jsp" method="POST">
         
-            
-            <div>Enter activity date <input type="text" name="activity_date" id="activity_date"><br></div>
+            <div>
+                Select Asset 
+                <select name="assetID" id="assetID">
+                    <% for (int i=0; i<assetBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetBean.names.get(i)%></option>
+                    <% }                                                       %>
+                </select>
+            </div>
+            <div>Enter activity date (YYYY-MM-DD) <input type="text" name="activity_date" id="activity_date" required><br></div>
 
             <div>
-                Select Officer authorizing officer
-                <select name="authorizingOfficer" id="products">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerID%></option>
+                Select authorizing officer
+                <select name="authorizingOfficer" id="authorizingOfficer">
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerActionBean.names.get(i)%></option>
+                    <% }                                                      %>
+                </select>
+            </div>
+            <div>Enter description <input type="text" name="activity_description" id="activity_description"><br></div>
+            <div>
+                Select authorizing president
+                <select name="authorizing_president" id="authorizing_president">
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerActionBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>
-
-            <div>
-                Select Officer authorizing president
-                <select name="authorizing_president" id="products">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerID%></option>
+                
+            <div>Enter tentative start date (YYYY-MM-DD) <input type="text" name="tentative_sdate" id="tentative_sdate"><br></div>
+            <div>Enter tentative end date (YYYY-MM-DD) <input type="text" name="tentative_edate" id="tentative_edate"><br></div>
+            <div>Enter actual start date (YYYY-MM-DD) <input type="text" name="actual_sdate" id="actual_sdate"><br></div>
+            <div>Enter actual end date (YYYY-MM-DD) <input type="text" name="actual_edate" id="actual_edate"><br></div>
+            <div>Enter cost <input type="text" name="cost" id="cost"><br></div>
+            <div>Select OR number 
+                <select name="ORnumber" id="ORnumber">
+                    <% for (int i=0; i<ornumberActionBean.ORnumber.size(); i++) {     %>
+                    <%     int ORnumber = ornumberActionBean.ORnumber.get(i);                    %>
+                    <option value ="<%=ORnumber%>"><%=ORnumber%></option>
                     <% }                                                     %>
+                </select>
+            </div>
+            <div>Select status 
+                <select name="status" id="status">
+                    <option value ="Scheduled">Scheduled</option>
+                    <option value ="Ongoing">Ongoing</option>  
+                    <option value ="Completed">Completed</option>  
+                    <option value ="Deleted">Deleted</option>
                 </select>
             </div>
             <input type="submit" value="registerAssetActivity" name="registerAssetActivity">

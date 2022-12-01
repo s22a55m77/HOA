@@ -35,12 +35,33 @@ public class activityAction {
     
     //TODO
     public int record(
-            int authorizing_president,
-            int authorizingOfficer,
-            String activity_date
+            int assetID, 
+            String activity_description,
+            int authorizing_president, 
+            int authorizingOfficer, 
+            double cost, 
+            int ORnumber, 
+            String activity_date, 
+            String tentative_sdate,
+            String tentative_edate,
+            String actual_sdate,
+            String actual_edate,
+            String status
     ) {
-        assetActivity test = new assetActivity();
-        test.assetID = authorizing_president;
+        assetActivity assetActivity = new assetActivity();
+        assetActivity.assetID = assetID;
+        assetActivity.activity_description = activity_description;
+        assetActivity.authorizing_president = authorizing_president;
+        assetActivity.authorizingOfficer = authorizingOfficer;
+        assetActivity.cost = cost;
+        assetActivity.ORnumber = ORnumber;
+        assetActivity.activity_date = activity_date;
+        assetActivity.tentative_sdate = tentative_sdate;
+        assetActivity.tentative_edate = tentative_edate;
+        assetActivity.actual_sdate = actual_sdate;
+        assetActivity.actual_edate = actual_edate;
+        assetActivity.status = assetActivity.getStatus(status);
+        assetActivity.addAssetActivity();
         return 1;
     }
     

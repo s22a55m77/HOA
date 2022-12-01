@@ -20,9 +20,10 @@ public class assetActivity {
     
     //ENUM of status
     enum Status{
-        Scheduled,
-        Ongoing,
-        Completed
+        S,
+        O,
+        C,
+        D
     }
     
     public int assetID;
@@ -45,14 +46,16 @@ public class assetActivity {
     }
     
     //getter of enum
-    private Status getStatus(String string){
+    public Status getStatus(String string){
         switch(string){
             case "Scheduled":
-                return Status.Scheduled;
+                return Status.S;
             case "Ongoing":
-                return Status.Ongoing;
+                return Status.O;
             case "Completed":
-                return Status.Completed;
+                return Status.C;
+            case "Deleted":
+                return Status.D;
             default:
                 return null;
         }
