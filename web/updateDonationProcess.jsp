@@ -39,7 +39,7 @@
             <div>Enter Donor Address <input type="text" name="donor_address" id="donor_address" value="<%=donation.donor_address%>"><br></div>
             <div>Enter Amount <input type="text" name="amount" id="amount" value="<%=donation.amount%>" ><br></div>
             <div>Enter Donor's form Filename <input type="text" name="donorsform_filename" id="donorsform_filename" value="<%=donation.donorsform_filename%>"><br></div>
-            <div>Enter Date YYYY-MM-DD <input type="text" name="donation_date" id="donation_date" value="<%=donation.donation_date%>"><br></div>
+            <div>Enter Date  <input type="date" name="donation_date" id="donation_date" value="<%=donation.donation_date%>"><br></div>
             
             <div>
                 Select Accepting Officer
