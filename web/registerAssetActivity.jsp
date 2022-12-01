@@ -32,7 +32,7 @@
                     <% }                                                       %>
                 </select>
             </div>
-            <div>Enter activity date (YYYY-MM-DD) <input type="text" name="activity_date" id="activity_date" required><br></div>
+            <div>Enter activity date <input type="date" name="activity_date" id="activity_date" required><br></div>
 
             <div>
                 Select authorizing officer
@@ -54,10 +54,10 @@
                 </select>
             </div>
                 
-            <div>Enter tentative start date (YYYY-MM-DD) <input type="text" name="tentative_sdate" id="tentative_sdate"><br></div>
-            <div>Enter tentative end date (YYYY-MM-DD) <input type="text" name="tentative_edate" id="tentative_edate"><br></div>
-            <div>Enter actual start date (YYYY-MM-DD) <input type="text" name="actual_sdate" id="actual_sdate"><br></div>
-            <div>Enter actual end date (YYYY-MM-DD) <input type="text" name="actual_edate" id="actual_edate"><br></div>
+            <div>Enter tentative start date <input type="date" name="tentative_sdate" id="tentative_sdate"><br></div>
+            <div>Enter tentative end date <input type="date" name="tentative_edate" id="tentative_edate"><br></div>
+            <div>Enter actual start date <input type="date" name="actual_sdate" id="actual_sdate"><br></div>
+            <div>Enter actual end date <input type="date" name="actual_edate" id="actual_edate"><br></div>
             <div>Enter cost <input type="text" name="cost" id="cost" required><br></div>
             <div>Select OR number 
                 <select name="ORnumber" id="ORnumber">
