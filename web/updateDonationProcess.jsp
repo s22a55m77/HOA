@@ -16,6 +16,10 @@
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
         <% assetActivityBean.getOfficer();    %>
        <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
+       <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
+        <%
+           officerActionBean.getNameForOfficer();
+        %>
         <%
             int assetID;
             String s_assetID = request.getParameter("assetID");
@@ -40,27 +44,27 @@
             <div>
                 Select Accepting Officer
                 <select name="acceptingOfficer" id="officers">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);                    
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);                    
                      if (officerID == donation.acceptingOfficer) {%>
-                        <option value ="<%=officerID%>" selected="selected"><%=officerID%></option>
-                    <% } %>  
-                    <option value ="<%=officerID%>"><%=officerID%></option>
-                    <% }                                                     %>
+                        <option value ="<%=officerID%>" selected="selected"><%=officerActionBean.names.get(i)%></option>
+                    <% } else { %>  
+                    <option value ="<%=officerID%>"><%=officerActionBean.names.get(i)%></option>
+                    <% } }                                                     %>
                 </select>
             </div>
 
             <div>
                 Select Authorizing President
                 <select name="authorizing_president" id="officers">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);  
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);  
                            if (officerID == donation.authorizing_president) {%>
-                        <option value ="<%=officerID%>" selected="selected"><%=officerID%></option>
-                    <% }                                                     %>
+                        <option value ="<%=officerID%>" selected="selected"><%=officerActionBean.names.get(i)%></option>
+                    <% } else {                                                     %>
                     
-                    <option value ="<%=officerID%>" ><%=officerID%></option>
-                    <% }                                                     %>
+                    <option value ="<%=officerID%>" ><%=officerActionBean.names.get(i)%></option>
+                    <% } }                                                     %>
                 </select>
             </div> 
             
