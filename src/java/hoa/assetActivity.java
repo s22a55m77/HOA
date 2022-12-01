@@ -77,8 +77,10 @@ public class assetActivity {
             pstmt.setInt(4, authorizingOfficer);
             pstmt.setString(5, tentative_sdate);
             pstmt.setString(6, tentative_edate);
-            pstmt.setString(7, actual_sdate);
-            pstmt.setString(8, actual_edate);
+            if (actual_sdate == "") pstmt.setNull(7, java.sql.Types.VARCHAR);
+            else pstmt.setString(7, actual_sdate);
+            if (actual_edate == "") pstmt.setNull(8, java.sql.Types.VARCHAR);
+            else pstmt.setString(8, actual_edate);
             pstmt.setDouble(9, cost);
             pstmt.setInt(10, ORnumber);
             pstmt.setString(11, status.name());
