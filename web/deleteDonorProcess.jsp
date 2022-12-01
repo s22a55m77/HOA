@@ -33,7 +33,6 @@
                 donation date: <%=donation.donation_date%><br/>
                 accepting Offer: <%=officerActionBean.getNameForAssetDonation(donation.acceptingOfficer)%> <br />
                 form filename: <%=donation.donorsform_filename%><br/>
-                deleted: <%=donation.deleted%><br/>
                 authorizing president: <%=officerActionBean.getNameForAssetDonation(donation.authorizing_president)%> <br />
             </div>   
             <input type="submit" value="Confirm" name="deleteDonor">

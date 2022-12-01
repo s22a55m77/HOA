@@ -30,7 +30,10 @@ public class donationAction {
            
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT assetID FROM asset_donation;");
+            PreparedStatement pstmt = con.prepareStatement("SELECT assetID\n" +
+                                                            "FROM asset_donation\n" +
+                                                            "WHERE deleted = 0\n" +
+                                                            "ORDER BY assetID ASC;");
             
             ResultSet rs = pstmt.executeQuery();
             donations.clear();
