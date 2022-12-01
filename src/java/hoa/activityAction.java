@@ -13,7 +13,11 @@ import java.util.*;
  */
 public class activityAction {
     public ArrayList<Integer> officers = new ArrayList<>();
-    
+    public ArrayList<Integer> assetID = new ArrayList<>();
+    public ArrayList<String> names = new ArrayList<>();
+    public ArrayList<String> dates = new ArrayList<>();
+    public String actual_sdate;
+    public String actual_edate;
     public int getOfficer() {
         try {
             Connection conn;
@@ -32,6 +36,53 @@ public class activityAction {
             return 0;
         }
     };
+    
+    public int getIncompleteActivitiesAssetIDs() {
+        try {
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT aa.assetID, a.asset_name\n" +
+                                                                    "FROM asset_activities aa JOIN assets a ON aa.assetID=a.assetID\n" +
+                                                                    "WHERE actual_sdate IS NULL OR actual_edate IS NULL\n" +
+                                                                    "ORDER BY a.asset_name, aa.assetID; ");
+            ResultSet rs = sqlstatement.executeQuery();
+            assetID.clear();
+            names.clear();
+            while (rs.next()) {
+                assetID.add(rs.getInt("aa.assetID"));
+                names.add(rs.getString("a.asset_name"));
+            }
+            sqlstatement.close();
+            conn.close();
+            return 1;    
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
+    public int getIncompleteActivitiesDates(int ID) {
+        try {
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT aa.activity_date\n" +
+                                                                    "FROM asset_activities aa\n" +
+                                                                    "WHERE aa.assetID = ?\n" +
+                                                                    "ORDER BY aa.activity_date; ");
+            pstmt.setInt(1, ID);
+            ResultSet rs = pstmt.executeQuery();
+            dates.clear();
+            while (rs.next()) {
+                dates.add(rs.getString("aa.activity_date"));
+            }
+            pstmt.close();
+            conn.close();
+            return 1;    
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
     
     //TODO
     public int record(
@@ -63,6 +114,37 @@ public class activityAction {
         assetActivity.status = assetActivity.getStatus(status);
         assetActivity.addAssetActivity();
         return 1;
+    }
+    
+    public int getActivity(int id, String date) {
+        System.out.println(id + date);
+        assetActivity assetActivity = new assetActivity();
+        assetActivity.assetID = id;
+        assetActivity.activity_date = date;
+        assetActivity.viewAssetActivity();
+        actual_sdate = assetActivity.actual_sdate;
+        actual_edate = assetActivity.actual_edate;
+        return 1;
+    }
+    
+    public int updateDate(int assetID, String activity_date, String actual_sdate, String actual_edate) {
+        try {
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET actual_sdate=?, actual_edate=?"
+                    + "WHERE assetID=? AND activity_date=?");
+            pstmt.setString(1, actual_sdate);
+            pstmt.setString(2, actual_edate);
+            pstmt.setInt(3, assetID);
+            pstmt.setString(4, activity_date);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on activityAction, updateDate" + e.getMessage());
+            return 0;
+        }
     }
     
     public int update() {

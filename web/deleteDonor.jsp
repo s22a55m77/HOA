@@ -20,7 +20,7 @@
                 <select name="assetID" id="assetID">
                     <% for (int i=0; i<donationActivityBean.donations.size(); i++) {     %>
                     <%     int assetID = donationActivityBean.donations.get(i);                    %>
-                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <option value ="<%=assetID%>"><%=donationActivityBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>
