@@ -44,6 +44,9 @@
                 <option value="For Disposal">For Disposal</option>
                 <option value="Disposed">Disposed</option>
             </select><br><br>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location"><br><br>
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>
