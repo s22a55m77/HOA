@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.*;
 /**
  *
  * @author ccslearner
@@ -18,6 +18,8 @@ import java.sql.SQLException;
 public class officerAction {
     public String lastname;
     public String firstname;
+    public ArrayList<String> names = new ArrayList();
+    public ArrayList<Integer> IDs = new ArrayList();
     
     public String getNameForAssetDonation(int ID) {
         try {
@@ -42,29 +44,28 @@ public class officerAction {
         }
     }
     
-    public String getNameForOfficer(int ID) {
-        System.out.println(ID);
+    public int getNameForOfficer() {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname\n" +
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname, o.officerID\n" +
                                                             "FROM users u JOIN ho ON ho.hoID=u.userID\n" +
-                                                            "             JOIN officer o ON o.hoID=ho.hoID\n" +
-                                                            "WHERE o.officerID = ?;");
-            pstmt.setInt(1, ID);
+                                                            "JOIN officer o ON o.hoID=ho.hoID\n" +
+                                                            "ORDER BY u.lastname, u.firstname, o.officerID;");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                lastname = rs.getString("u.lastname");
-                firstname = rs.getString("u.firstname");
+                names.add(rs.getString("u.lastname") + " " + rs.getString("u.firstname"));
+                IDs.add(rs.getInt("o.officerID"));
             }
             
-            return lastname + " " + firstname;
+            return 1;
         } catch (SQLException e) {
             System.out.println("error on officerAction, getNameForOfficer" + e.getMessage());
-            return "";
+            return 0;
         }
     }
     
+
     public static void main (String args[]) {
         //officerAction o = new officerAction();
         //o.getName(1000004);

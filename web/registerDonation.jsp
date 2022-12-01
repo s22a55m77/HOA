@@ -16,7 +16,9 @@
         <% assetBean.getAssetIDs();                                                 %>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
         <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
-        <% assetActivityBean.getOfficer();    %>
+        <% assetActivityBean.getOfficer();   
+           officerActionBean.getNameForOfficer();
+        %>
         <form name="register_donation" action="registerDonationSave.jsp" method="POST">
         
             <div>
@@ -38,9 +40,9 @@
             <div>
                 Select Accepting Officer
                 <select name="acceptingOfficer" id="officers">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerActionBean.getNameForOfficer(officerID)%></option>
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerActionBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>
@@ -48,9 +50,9 @@
             <div>
                 Select Authorizing President
                 <select name="authorizing_president" id="officers">
-                    <% for (int i=0; i<assetActivityBean.officers.size(); i++) {     %>
-                    <%     int officerID = assetActivityBean.officers.get(i);                    %>
-                    <option value ="<%=officerID%>"><%=officerActionBean.getNameForOfficer(officerID)%></option>
+                    <% for (int i=0; i<officerActionBean.names.size(); i++) {     %>
+                    <%     int officerID = officerActionBean.IDs.get(i);                    %>
+                    <option value ="<%=officerID%>"><%=officerActionBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div> 
