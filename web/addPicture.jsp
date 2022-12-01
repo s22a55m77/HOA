@@ -21,12 +21,12 @@
                 <select name="assetID" id="assetID">
                     <% for (int i=0; i<donationBean.donations.size(); i++) {     %>
                     <%     int assetID = donationBean.donations.get(i);                    %>
-                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <option value ="<%=assetID%>"><%=donationBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>
             
-            <div>Enter Picture Filename <input type="text" name="filename" id="donorsform_filename"><br></div>
+            <div>Enter Picture Filename <input type="text" name="filename" id="donorsform_filename" required><br></div>
             <input type="submit" value="Add Picture" name="add_picture">
         </form>
     </body>
