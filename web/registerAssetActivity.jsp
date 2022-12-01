@@ -16,7 +16,7 @@
         <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
         <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
         <jsp:useBean id="ornumberActionBean" class="hoa.ornumberAction" scope="session" />
-        <% assetBean.getAssetIDs();                                                 
+        <% assetBean.getAssetNames();                                                
            assetActivityBean.getOfficer();
            officerActionBean.getNameForOfficer();
            ornumberActionBean.getORnumber();
@@ -58,7 +58,7 @@
             <div>Enter tentative end date (YYYY-MM-DD) <input type="text" name="tentative_edate" id="tentative_edate"><br></div>
             <div>Enter actual start date (YYYY-MM-DD) <input type="text" name="actual_sdate" id="actual_sdate"><br></div>
             <div>Enter actual end date (YYYY-MM-DD) <input type="text" name="actual_edate" id="actual_edate"><br></div>
-            <div>Enter cost <input type="text" name="cost" id="cost"><br></div>
+            <div>Enter cost <input type="text" name="cost" id="cost" required><br></div>
             <div>Select OR number 
                 <select name="ORnumber" id="ORnumber">
                     <% for (int i=0; i<ornumberActionBean.ORnumber.size(); i++) {     %>
