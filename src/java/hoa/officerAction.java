@@ -54,6 +54,8 @@ public class officerAction {
                                                             "JOIN officer o ON o.hoID=ho.hoID\n" +
                                                             "ORDER BY u.lastname, u.firstname, o.officerID;");
             ResultSet rs = pstmt.executeQuery();
+            names.clear();
+            IDs.clear();
             while(rs.next()) {
                 names.add(rs.getString("u.lastname") + " " + rs.getString("u.firstname"));
                 IDs.add(rs.getInt("o.officerID"));
