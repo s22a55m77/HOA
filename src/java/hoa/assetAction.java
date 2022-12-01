@@ -21,7 +21,7 @@ public class assetAction {
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
-            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT assetID FROM assets");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT assetID FROM assets ORDER BY assetID ASC;");
             ResultSet rs = sqlstatement.executeQuery();
             assetID.clear();
             while (rs.next()) {
