@@ -20,9 +20,6 @@
         <% String status = request.getParameter("status");                     %>
         <% String activity_date = request.getParameter("activity_date");                     %>
         <% assetID = Integer.parseInt(s_assetID);                                %>
-        <%
-            System.out.println(assetID + activity_date + status);
-        %>
         
         <% activityActionBean.update(assetID, activity_date, status);                       %>
         Activity was updated<br>
