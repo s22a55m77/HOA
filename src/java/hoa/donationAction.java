@@ -20,6 +20,7 @@ import java.sql.*;
  */
 public class donationAction {
     public ArrayList<Integer> donations = new ArrayList<Integer>();
+    public ArrayList<String> names = new ArrayList<String>();
     
     public class newDonation extends donation {
             String s_acceptingOfficer;
@@ -30,16 +31,17 @@ public class donationAction {
            
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT assetID\n" +
-                                                            "FROM asset_donation\n" +
+            PreparedStatement pstmt = con.prepareStatement("SELECT ad.assetID, a.asset_name\n" +
+                                                            "FROM asset_donation ad JOIN assets a ON ad.assetID=a.assetID\n" +
                                                             "WHERE deleted = 0\n" +
-                                                            "ORDER BY assetID ASC;");
+                                                            "ORDER BY a.asset_name, ad.assetID;");
             
             ResultSet rs = pstmt.executeQuery();
             donations.clear();
+            names.clear();
             while (rs.next()) {
-                int assetID = rs.getInt("assetID");
-                donations.add(assetID);
+                donations.add(rs.getInt("ad.assetID"));
+                names.add(rs.getString("a.asset_name"));
             }
             
             rs.close();

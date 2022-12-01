@@ -17,13 +17,16 @@
         <% assetActivityBean.getOfficer();    %>
        <jsp:useBean id="donationBean" class="hoa.donationAction" scope="session" />
        <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
+       <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
         <%
            officerActionBean.getNameForOfficer();
+           
         %>
         <%
             int assetID;
             String s_assetID = request.getParameter("assetID");
             assetID = Integer.parseInt(s_assetID);
+            assetActionBean.getAssetName(assetID);
             donation donation = donationBean.getDonation(assetID);
         %>
         
@@ -31,7 +34,7 @@
             <div>
                 Select Asset that was donated
                 <select name="assetID" id="assetID">
-                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <option value ="<%=assetID%>"><%=assetActionBean.name%></option>
                 </select>
             </div>
             
