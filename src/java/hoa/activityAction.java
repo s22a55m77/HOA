@@ -13,6 +13,9 @@ import java.util.*;
  */
 public class activityAction {
     public ArrayList<Integer> officers = new ArrayList<>();
+    public ArrayList<Integer> IDs = new ArrayList<>();
+    public ArrayList<String> names = new ArrayList<>();
+    public ArrayList<String> dates = new ArrayList<>();
     
     public int getOfficer() {
         try {
@@ -32,6 +35,61 @@ public class activityAction {
             return 0;
         }
     };
+    
+    public int getActivities() {
+        try {
+           
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT aa.assetID, a.asset_name\n" +
+                                                            "FROM asset_activities aa JOIN assets a ON aa.assetID=a.assetID\n" +
+                                                            "WHERE status != 'D'\n" +
+                                                            "ORDER BY a.asset_name, aa.assetID;");
+            
+            ResultSet rs = pstmt.executeQuery();
+            IDs.clear();
+            names.clear();
+            while (rs.next()) {
+                IDs.add(rs.getInt("aa.assetID"));
+                names.add(rs.getString("a.asset_name"));
+            }
+            
+            rs.close();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on activity action, getActivities" + e.getMessage());
+            return 0;
+        }
+    }
+    
+    public int getDates(int assetID) {
+        try {
+           
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT aa.activity_date\n" +
+                                                            "FROM asset_activities aa JOIN assets a ON aa.assetID=a.assetID\n" +
+                                                            "WHERE status != 'D' AND aa.assetID = ?\n" +
+                                                            "ORDER BY aa.activity_date;");
+            
+            pstmt.setInt(1, assetID);
+            ResultSet rs = pstmt.executeQuery();
+            dates.clear();
+            while (rs.next()) {
+                dates.add(rs.getString("aa.activity_date"));
+            }
+            
+            rs.close();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on activity action, getDates" + e.getMessage());
+            return 0;
+        }
+    }
     
     //TODO
     public int record(
@@ -65,7 +123,14 @@ public class activityAction {
         return 1;
     }
     
-    public int update() {
+    public int update(int assetID, String date, String status) {
+        assetActivity aa = new assetActivity();
+        aa.assetID = assetID;
+        aa.activity_date = date;
+        aa.status = aa.getStatus(status);
+        
+        aa.modAssetActivity();
+        
         return 1;
     }
     
