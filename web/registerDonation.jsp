@@ -13,11 +13,12 @@
     </head>
     <body>
         <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
-        <% assetBean.getAssetIDs();                                                 %>
+        <%                                                %>
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
         <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
-        <% assetActivityBean.getOfficer();   
-           officerActionBean.getNameForOfficer();
+        <%  assetBean.getAssetNames();
+            assetActivityBean.getOfficer();   
+            officerActionBean.getNameForOfficer();
         %>
         <form name="register_donation" action="registerDonationSave.jsp" method="POST">
         
@@ -26,7 +27,7 @@
                 <select name="assetID" id="assetID">
                     <% for (int i=0; i<assetBean.assetID.size(); i++) {     %>
                     <%     int assetID = assetBean.assetID.get(i);                    %>
-                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <option value ="<%=assetID%>"><%=assetBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>

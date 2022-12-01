@@ -14,6 +14,7 @@ import java.util.*;
  */
 public class assetAction {
     public ArrayList<Integer> assetID = new ArrayList<>();
+    public ArrayList<String> names = new ArrayList<>();
     
     
     public int getAssetIDs() {
@@ -36,6 +37,29 @@ public class assetAction {
         }
         
     }
+    
+    public int getAssetNames() {
+         try {
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT a.assetID, a.asset_name\n" +
+                                                                    "FROM assets a\n" +
+                                                                    "ORDER BY a.asset_name, a.assetID;");
+            ResultSet rs = sqlstatement.executeQuery();
+            assetID.clear();
+            names.clear();
+            while (rs.next()) {
+                assetID.add(rs.getInt("a.assetID"));
+                names.add(rs.getString("a.asset_name"));
+            }
+            sqlstatement.close();
+            conn.close();
+            return 1;    
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
     //TODO
     public int register() {
         return 1;
@@ -52,4 +76,5 @@ public class assetAction {
     public int dispose() {
         return 1;
     }
+    
 }
