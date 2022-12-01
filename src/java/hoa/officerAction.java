@@ -49,7 +49,7 @@ public class officerAction {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname\n" +
+            PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname, o.officerID\n" +
                                                             "FROM users u JOIN ho ON ho.hoID=u.userID\n" +
                                                             "JOIN officer o ON o.hoID=ho.hoID\n" +
                                                             "ORDER BY u.lastname, u.firstname, o.officerID;");
