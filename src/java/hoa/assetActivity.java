@@ -61,7 +61,7 @@ public class assetActivity {
     public int addAssetActivity() {
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_activities (assetID, activity_date, activity_description, authorizingOfficer, "
                     + "tentative_sdate, tentative_edate, actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -95,7 +95,7 @@ public class assetActivity {
         // modify asset_activities
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET activity_description=?, authorizingOfficer=?, tentative_sdate=?, tentative_edate=?,"
                     + "actual_sdate=?, actual_edate=?, cost=?, ORnumber=?, status=?, authorizing_president=? "
                     + "WHERE assetID=? AND activity_date=?");
@@ -128,7 +128,7 @@ public class assetActivity {
         // delete asset_activities
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM asset_activities WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
@@ -149,7 +149,7 @@ public class assetActivity {
         // view record
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID, activity_date, activity_description, assetID, tentative_sdate, tentative_edate, "
                     + "actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president "
                     + "FROM asset_activities WHERE assetID=? AND activity_date=?");

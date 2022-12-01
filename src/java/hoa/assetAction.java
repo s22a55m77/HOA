@@ -20,7 +20,7 @@ public class assetAction {
         assetID.clear();
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
             PreparedStatement   sqlstatement = conn.prepareStatement("SELECT assetID FROM assets");
             ResultSet rs = sqlstatement.executeQuery();
             assetID.clear();

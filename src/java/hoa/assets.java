@@ -116,7 +116,7 @@ public class assets {
         // insert all variable to the table
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO assets (assetID, hoa_owner, asset_type, asset_desc, "
                     + "asset_name, aquisition_date, for_rent, asset_value, asset_status, asset_locX, asset_locY, containing_asset) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -150,7 +150,7 @@ public class assets {
         // update the table based on the varaible
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET hoa_owner=?, asset_type=?, asset_desc=?, asset_name=?, aquisition_date=?, "
                     + "for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?, containing_asset=? "
                     + "WHERE assetID=?");
@@ -183,7 +183,7 @@ public class assets {
         // delete asset
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM assets WHERE assetID=?");
 
             // first param = place of questionmark
@@ -203,7 +203,7 @@ public class assets {
         // view record
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID, hoa_owner, asset_type, asset_desc, asset_name, aquisition_date, "
                     + "for_rent, asset_value, asset_status, asset_locX, asset_locY, containing_asset "
                     + "FROM assets WHERE assetID=?");

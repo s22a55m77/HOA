@@ -17,7 +17,7 @@ public class activityAction {
     public int getOfficer() {
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
             PreparedStatement   sqlstatement = conn.prepareStatement("SELECT officerID FROM officer");
             ResultSet rs = sqlstatement.executeQuery();
             officers.clear();

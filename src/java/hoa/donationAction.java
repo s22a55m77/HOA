@@ -29,7 +29,7 @@ public class donationAction {
       try {
            
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID\n" +
                                                             "FROM asset_donation\n" +
                                                             "WHERE deleted = 0\n" +
@@ -55,7 +55,7 @@ public class donationAction {
     public int delDonor(int assetID) {
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("UPDATE asset_donation SET deleted=1 WHERE assetID = ?;");
             
             pstmt.setInt(1, assetID);
@@ -104,7 +104,7 @@ public class donationAction {
     public int savePicture(int assetID, String filename) {
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO donation_pictures (assetID, filename) VALUES (?, ?)");
 
             // first param = place of questionmark

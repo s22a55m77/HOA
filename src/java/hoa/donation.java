@@ -33,7 +33,7 @@ public class donation {
     public int addDonation() {
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO asset_donation (assetID, donor_completename, donor_address, amount,"
                     + "acceptingOfficer, donorsform_filename, donation_date, deleted, authorizing_president) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -64,7 +64,7 @@ public class donation {
         // modify donation
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("UPDATE asset_donation SET donor_completename=?, donor_address=?, amount=?, acceptingOfficer=?,"
                     + "donorsform_filename=?, donation_date=?, deleted=?, authorizing_president=? "
                     + "WHERE assetID=?");
@@ -94,7 +94,7 @@ public class donation {
         // delete donation
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM asset_donation WHERE assetID=?");
 
             // first param = place of questionmark
@@ -114,7 +114,7 @@ public class donation {
         // view record
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID, donor_completename, donor_address, amount, acceptingOfficer, donorsform_filename, "
                     + "donation_date, deleted, authorizing_president "
                     + "FROM asset_donation WHERE assetID=?");

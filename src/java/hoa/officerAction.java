@@ -22,7 +22,7 @@ public class officerAction {
     public String getNameForAssetDonation(int ID) {
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname\n" +
                                                             "FROM users u JOIN ho ON ho.hoID=u.userID\n" +
                                                             "             JOIN officer o ON o.hoID=ho.hoID\n" +
@@ -44,9 +44,11 @@ public class officerAction {
     
     public String getNameForOfficer(int ID) {
         System.out.println(ID);
+        lastname = null;
+        firstname = null;
         try {
             Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoa?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT DISTINCT u.lastname, u.firstname\n" +
                                                             "FROM users u JOIN ho ON ho.hoID=u.userID\n" +
                                                             "             JOIN officer o ON o.hoID=ho.hoID\n" +
@@ -57,7 +59,7 @@ public class officerAction {
                 lastname = rs.getString("u.lastname");
                 firstname = rs.getString("u.firstname");
             }
-            
+            System.out.println(lastname);
             return lastname + " " + firstname;
         } catch (SQLException e) {
             System.out.println("error on officerAction, getNameForOfficer" + e.getMessage());
