@@ -26,7 +26,7 @@
                 </select>
             </div>
             
-            <div>Enter Picture Filename <input type="text" name="filename" id="donorsform_filename"><br></div>
+            <div>Enter Picture Filename <input type="text" name="filename" id="donorsform_filename" required><br></div>
             <input type="submit" value="Add Picture" name="add_picture">
         </form>
     </body>
