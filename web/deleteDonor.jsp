@@ -27,5 +27,6 @@
 
             <input type="submit" value="Next" name="deleteDonor">
         </form>
+        <a href="index.html">Go back to Main Menu</a>
     </body>
 </html>
