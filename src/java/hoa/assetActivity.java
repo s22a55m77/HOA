@@ -19,7 +19,7 @@ public class assetActivity {
     
     
     //ENUM of status
-    enum Status{
+    public enum Status{
         S,
         O,
         C,
@@ -48,13 +48,13 @@ public class assetActivity {
     //getter of enum
     public Status getStatus(String string){
         switch(string){
-            case "Scheduled":
+            case "S":
                 return Status.S;
-            case "Ongoing":
+            case "O":
                 return Status.O;
-            case "Completed":
+            case "C":
                 return Status.C;
-            case "Deleted":
+            case "D":
                 return Status.D;
             default:
                 return null;
@@ -101,24 +101,14 @@ public class assetActivity {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET activity_description=?, authorizingOfficer=?, tentative_sdate=?, tentative_edate=?,"
-                    + "actual_sdate=?, actual_edate=?, cost=?, ORnumber=?, status=?, authorizing_president=? "
+            PreparedStatement pstmt = con.prepareStatement("UPDATE asset_activities SET status=?"
                     + "WHERE assetID=? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setString(1, activity_description);
-            pstmt.setInt(2, authorizingOfficer);
-            pstmt.setString(3, tentative_sdate);
-            pstmt.setString(4, tentative_edate);
-            pstmt.setString(5, actual_sdate);
-            pstmt.setString(6, actual_edate);
-            pstmt.setDouble(7, cost);
-            pstmt.setInt(8, ORnumber);
-            pstmt.setString(9, status.name());
-            pstmt.setInt(10, authorizing_president);
-            pstmt.setInt(11, assetID);
-            pstmt.setString(12, activity_date);
+            pstmt.setString(1, status.name());
+            pstmt.setInt(2, assetID);
+            pstmt.setString(3, activity_date);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
@@ -156,8 +146,8 @@ public class assetActivity {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             PreparedStatement pstmt = con.prepareStatement("SELECT assetID, activity_date, activity_description, assetID, tentative_sdate, tentative_edate, "
-                    + "actual_sdate, actual_edate, cost, ORnumber, status, authorizing_president "
-                    + "FROM asset_activities WHERE assetID=? AND activity_date=?");
+                    + "actual_sdate, actual_edate, cost, ORnumber, `status`, authorizing_president "
+                    + "FROM asset_activities WHERE assetID = ? AND activity_date=?");
 
             // first param = place of questionmark
             // second param = value
@@ -185,8 +175,9 @@ public class assetActivity {
             con.close();
             return 1;
         } catch (SQLException e) {
-            System.out.println("error on asset, addAsset" + e.getMessage());
+            System.out.println("error on asset activity, viewAssetActivity" + e.getMessage());
             return 0;
         }
     }
+    
 }
