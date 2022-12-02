@@ -61,11 +61,11 @@
         
         Containing Asset:
         <select name="containing_asset" id="containing_asset">
+            <option value ="">None</option>
             <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
             <%     int assetID = assetActionBean.assetID.get(i);                    %>
             <option value ="<%=assetID%>"><%=assetActionBean.names.get(i)%></option>
             <% }                                                     %>
-            <option value ="">none</option>
         </select>
         <br>
         Submit<input type="submit" value="registerAsset" name="registerAsset">

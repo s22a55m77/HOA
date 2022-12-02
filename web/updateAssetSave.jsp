@@ -20,7 +20,8 @@
             String status = request.getParameter("astatus");                     
             String s_locX = request.getParameter("locationX");   
             String s_locY = request.getParameter("locationY");   
-            
+            String s_containing_asset = request.getParameter("containing_asset"); 
+            int containing_asset;
             
             int assetID = Integer.parseInt(s_assetID);         
             double value = Double.parseDouble(s_value);
@@ -29,10 +30,13 @@
             boolean rent = false;
             if (s_rent == "For rent")
                 rent = true;
+            if (s_containing_asset == "")
+                containing_asset = 9999999;
+            else
+                containing_asset = Integer.parseInt(s_containing_asset);
             
-            System.out.println(rent + " " + value + " " + status + " " + locX + " " + locY +  " " + assetID);
         
-            assetActionBean.update(rent, value, status, locX, locY, assetID);%>
+            assetActionBean.update(rent, value, status, locX, locY, assetID, containing_asset);%>
         Asset was updated<br>
         <a href="index.html">Go back to Main Menu</a>
     </body>

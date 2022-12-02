@@ -23,7 +23,12 @@ public class ornumberAction {
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
-            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT ORnumber FROM REF_OR ORDER BY ORnumber;");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT ORnumber \n" +
+                                                                        "FROM REF_OR\n" +
+                                                                        "WHERE ORnumber NOT IN (SELECT ORnumber FROM asset_activities)\n" +
+                                                                        "AND  ORnumber NOT IN (SELECT ORnumber FROM asset_transfers)\n" +
+                                                                        "AND ORnumber NOT IN (SELECT ORnumber FROM asset_rentals)\n" +
+                                                                        "ORDER BY ORnumber;");
             ResultSet rs = sqlstatement.executeQuery();
             ORnumber.clear();
             while (rs.next()) {
