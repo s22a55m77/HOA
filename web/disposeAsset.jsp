@@ -9,9 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Dispose Asset</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
+        <%assetActionBean.getAssetNamesForDispose(); %>
+        <form name="disposeAssetProcess" action="disposeAssetProcess.jsp" method="POST">
+            <div>
+                Select Asset to dispose
+                <select name="assetID" id="assetID">
+                    <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetActionBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetActionBean.names.get(i)%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+            <input type="submit" value="Select" name="disposeAssetProcess">
+        </form>
     </body>
 </html>
