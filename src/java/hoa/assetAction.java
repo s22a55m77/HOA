@@ -76,7 +76,7 @@ public class assetAction {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
             PreparedStatement   sqlstatement = conn.prepareStatement("SELECT a.assetID, a.asset_name\n" +
                                                                     "FROM assets a\n" +
-                                                                    "WHERE a.for_rent=0\n" +
+                                                                    "WHERE a.asset_status='F'\n" +
                                                                     "ORDER BY a.asset_name, a.assetID;");
             ResultSet rs = sqlstatement.executeQuery();
             assetID.clear();
