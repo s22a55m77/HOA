@@ -38,10 +38,10 @@
             else
                 containing_asset = Integer.parseInt(s_containing_asset);
             
-
+            assetActionBean.getNewAssetID();
         %>    
         
-        <% assetActionBean.register(for_rent, asset_value, asset_status, aquisition_date, asset_desc, asset_type, locX, locY, hoaname, asset_name, containing_asset);               %>             
+        <%  assetActionBean.register(for_rent, asset_value, asset_status, aquisition_date, asset_desc, asset_type, locX, locY, hoaname, asset_name, containing_asset);               %>             
         Asset was registered<br>
         <a href="index.html">Go back to Main Menu</a>
     </body>

@@ -146,7 +146,6 @@ public class assetAction {
     public int register(boolean for_rent, double asset_value, String asset_status, String date, String desc, String type,
                         double asset_locX, double asset_locY, String hoaname, String name, int contain) {
         assets a = new assets();
-        getNewAssetID();
         a.assetID = newAssetID;
         a.for_rent = for_rent;
         a.aquisition_date = date;
