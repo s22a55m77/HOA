@@ -18,7 +18,7 @@
         <% String date = request.getParameter("activity_date");                  %>
         <% assetID = Integer.parseInt(s_assetID);                                %>
         <% assetActivityBean.getActivity(assetID, date); %>
-        <form name="register_asset_activity" action="completeAssetActivitySave.jsp" method="POST">
+        <form name="complete_asset_activity" action="completeAssetActivitySave.jsp" method="POST">
         
             <div>
                 Asset Selected

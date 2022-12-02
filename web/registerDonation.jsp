@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*, java.util.*, hoa.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +13,10 @@
         <title>Record Donation</title>
     </head>
     <body>
-        <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
-        <%                                                %>
+        <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
         <jsp:useBean id="assetActivityBean" class="hoa.activityAction" scope="session" />
         <jsp:useBean id="officerActionBean" class="hoa.officerAction" scope="session" />
-        <%  assetBean.getAssetNames();
+        <%  assetActionBean.getAssetNames();
             assetActivityBean.getOfficer();   
             officerActionBean.getNameForOfficer();
         %>
@@ -25,9 +25,9 @@
             <div>
                 Select Asset that was donated
                 <select name="assetID" id="assetID">
-                    <% for (int i=0; i<assetBean.assetID.size(); i++) {     %>
-                    <%     int assetID = assetBean.assetID.get(i);                    %>
-                    <option value ="<%=assetID%>"><%=assetBean.names.get(i)%></option>
+                    <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetActionBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetActionBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>

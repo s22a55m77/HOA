@@ -14,7 +14,6 @@
     </head>
     <body>
         <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
-        
         <jsp:useBean id="assetBean" class="hoa.assets" scope="session" />
         <%
             int assetID;
@@ -39,7 +38,7 @@
             </select><br><br>
            
             <label for="avalue">Asset Value</label>
-            <input type="text" id ="avalue" name="avalue" readonly value="<%=assetBean.asset_value%>"><br><br>
+            <input type="text" id ="avalue" name="avalue" value="<%=assetBean.asset_value%>"><br><br>
             
             <label for="astatus">Status</label>
             <select id="astatus" name="astatus">

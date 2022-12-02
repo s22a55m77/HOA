@@ -198,10 +198,5 @@ public class assetAction {
             return 0;
         }
     }
-    
-    public static void main(String[] args) {
-        assetAction a = new assetAction();
-        
-        a.update(true, 3000000.0, "F", 1375.0, 3220.0, 1000005);
-    }
+   
 }
