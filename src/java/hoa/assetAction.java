@@ -141,12 +141,28 @@ public class assetAction {
             return 0;
         }
     }
-    //TODO
-    public int register() {
-        return 1;
-    }
     
-    public int update() {
+    public int register(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID) {
+        assets a = new assets();
+        a.assetID = ID;
+        a.for_rent = for_rent;
+        a.asset_value = asset_value;
+        a.asset_status = a.getStatus(asset_status);
+        a.asset_locX = asset_locX;
+        a.asset_locY = asset_locY;
+        return 1;
+}
+    public int update(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID) {
+        assets a = new assets();
+        a.assetID = ID;
+        a.for_rent = for_rent;
+        a.asset_value = asset_value;
+        a.asset_status = a.getStatus(asset_status);
+        a.asset_locX = asset_locX;
+        a.asset_locY = asset_locY;
+        
+        a.modAsset();
+        
         return 1;
     }
     
@@ -192,4 +208,5 @@ public class assetAction {
             return 0;
         }
     }
+   
 }

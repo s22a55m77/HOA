@@ -219,12 +219,4 @@ public class activityAction {
 
         return 1;
     }
-    
-    public int complete() {
-        return 1;
-    }
-    
-    public int delete() {
-        return 1;
-    }
 }

@@ -16,7 +16,7 @@
         <%                                           
            assetActivityBean.getIncompleteActivitiesAssetIDs();
         %>
-        <form name="register_asset_activity" action="completeAssetActivityProcess.jsp" method="POST">
+        <form name="complete_asset_activity" action="completeAssetActivityProcess.jsp" method="POST">
         
             <div>
                 Select Asset 

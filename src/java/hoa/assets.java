@@ -151,24 +151,18 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET hoa_owner=?, asset_type=?, asset_desc=?, asset_name=?, aquisition_date=?, "
-                    + "for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?, containing_asset=? "
+            PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?"
                     + "WHERE assetID=?");
 
             // first param = place of questionmark
             // second param = value
-            pstmt.setString(1, hoa_owner);
-            pstmt.setString(2, getType(asset_type));
-            pstmt.setString(3, asset_desc);
-            pstmt.setString(4, asset_name);
-            pstmt.setString(5, aquisition_date);
-            pstmt.setBoolean(6, for_rent);
-            pstmt.setDouble(7, asset_value);
-            pstmt.setString(8, getStatus(asset_status));
-            pstmt.setDouble(9, asset_locX);
-            pstmt.setDouble(10, asset_locY);
-            pstmt.setInt(11, containing_asset);
-            pstmt.setInt(12, assetID);
+            
+            pstmt.setBoolean(1, for_rent);
+            pstmt.setDouble(2, asset_value);
+            pstmt.setString(3, getStatus(asset_status));
+            pstmt.setDouble(4, asset_locX);
+            pstmt.setDouble(5, asset_locY);
+            pstmt.setInt(6, assetID);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();
@@ -237,5 +231,4 @@ public class assets {
             return 0;
         }
     }
-    
 }

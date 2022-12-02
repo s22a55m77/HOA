@@ -69,9 +69,4 @@ public class officerAction {
         }
     }
     
-
-    public static void main (String args[]) {
-        //officerAction o = new officerAction();
-        //o.getName(1000004);
-    }
 }
