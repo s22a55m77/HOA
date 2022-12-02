@@ -12,24 +12,24 @@ import java.sql.*;
 public class assets {
     
     // ENUM of asset_type
-    private enum Type {
-        Property,
-        Equipment,
-        Furniture,
-        Fixtures
+    public enum Type {
+        P,
+        F,
+        O,
+        E
     }
     
     // ENUM of asset_status
-    private enum Status {
-        WorkingCondition,
-        Deteriorated,
-        ForRepair,
-        ForDisposal,
-        Disposed
+    public enum Status {
+        W,
+        D,
+        F,
+        I,
+        P
     }
     
     // viriables
-    int assetID;
+    public int assetID;
     public String hoa_owner;
     public Type asset_type;
     public String asset_desc;
@@ -48,65 +48,65 @@ public class assets {
     }
     
     // getter of enum
-    private String getType(Type type) {
+    public String getType(Type type) {
         switch(type) { 
-            case Property:
-                return "Property";
-            case Equipment: 
-                return "Equipment";
-            case Furniture:
-                return "Furniture";
-            case Fixtures:
-                return "Fixtures";
+            case P:
+                return "P";
+            case F: 
+                return "F";
+            case O:
+                return "O";
+            case E:
+                return "E";
             default:
                 return "Invalid";
         }
     }
     
-    private String getStatus(Status status) {
+    public String getStatus(Status status) {
         switch(status) { 
-            case WorkingCondition:
-                return "Working Condition";
-            case Deteriorated: 
-                return "Deteriorated";
-            case ForRepair:
-                return "For Repair";
-            case ForDisposal:
-                return "For Disposal";
-            case Disposed:
-                return "Disposed";
+            case W:
+                return "W";
+            case D: 
+                return "D";
+            case F:
+                return "F";
+            case I:
+                return "I";
+            case P:
+                return "P";
             default:
                 return "Invalid";
         }
     }
    
-    private Type getType(String string) {
+    public Type getType(String string) {
         switch(string){
-            case "Property":
-                return Type.Property;
-            case "Equipment":
-                return Type.Equipment;
-            case "Furniture":
-                return Type.Furniture;
-            case "Fixtures":
-                return Type.Fixtures;
+            case "P":
+                return Type.P;
+            case "F":
+                return Type.F;
+            case "O":
+                return Type.O;
+            case "E":
+                return Type.E;
             default:
                 return null;
         }
     }
     
-    private Status getStatus(String string) {
+    public Status getStatus(String string) {
         switch(string) {
-            case "Working Condition":
-                return Status.WorkingCondition;
-            case "Deteriorated":
-                return Status.Deteriorated;
-            case "For Repair":
-                return Status.ForRepair;
-            case "For Disposal":
-                return Status.ForDisposal;
-            case "Disposed":
-                return Status.Disposed;
+            case "W":
+                return Status.W;
+            case "D":
+                return Status.D;
+            case "F":
+                return Status.F;
+            case "I":
+                return Status.I;
+            case "P":
+                return Status.P;
             default:
                 return null;
         }
@@ -237,7 +237,5 @@ public class assets {
             return 0;
         }
     }
-    
-    
     
 }

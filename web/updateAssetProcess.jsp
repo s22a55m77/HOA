@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*, java.util.*, hoa.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,40 @@
         <title>Update Asset</title>
     </head>
     <body>
-         <!--TODO-->
+        <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
+        
+        <jsp:useBean id="assetBean" class="hoa.assets" scope="session" />
+        <%
+            int assetID;
+            String s_assetID = request.getParameter("assetID");
+            String activity_date = request.getParameter("activity_date");
+            assetID = Integer.parseInt(s_assetID);
+            assetActionBean.getAssetName(assetID);
+            
+            assetBean.assetID = assetID;
+            assetBean.viewAsset();
+            
+        %>
+        <form name="update_asset" action="updateAssetSave.jsp" method="POST">
+            <label for="aname:">Asset Name</label>
+            <input type="text" id ="aname" name="aname" readonly value="<%=assetActionBean.name%>"><br><br>
+            <select id="arent" name="arent">
+                <option value="For Rent" <%if(assetBean.for_rent == true) { %> selected="selected" <%}%>>For Rent</option>
+                <option value="Not For Rent" <%if(assetBean.for_rent == false) { %> selected="selected" <%}%> >Not For Rent</option>
+            </select><br><br>
+            <label for="avalue">Asset Value</label>
+            <input type="text" id ="avalue" name="avalue" readonly value="<%=assetBean.asset_value%>"><br><br>
+            
+            <label for="astatus">Status</label>
+            <select id="astatus" name="astatus">
+                <option value="W" <%if(assetBean.asset_status.name() == "W") { %> selected="selected" <%}%> >Working condition</option>
+                <option value="D" <%if(assetBean.asset_status.name() == "D") { %> selected="selected" <%}%>>Deteriorated</option>
+                <option value="F" <%if(assetBean.asset_status.name() == "F") { %> selected="selected" <%}%>>For Repair</option>
+                <option value="I" <%if(assetBean.asset_status.name() == "I") { %> selected="selected" <%}%>>For Disposal</option>
+            </select><br><br>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location"><br><br>
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
