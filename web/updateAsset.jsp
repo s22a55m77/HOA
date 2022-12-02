@@ -12,15 +12,15 @@
         <title>Update Asset</title>
     </head>
     <body>
-        <jsp:useBean id="assetBean" class="hoa.assetAction" scope="session" />
-        <% assetBean.getAssetIDs(); %>
+        <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
+        <% assetActionBean.getAssetNames(); %>
         <form name="update_asset_select" action="updateAssetProcess.jsp" method="POST">
             <div>
                 Select Asset that you want to update
                 <select name="assetID" id="assetID">
-                    <% for (int i=0; i<assetBean.assetID.size(); i++) {     %>
-                    <%     int assetID = assetBean.assetID.get(i);                    %>
-                    <option value ="<%=assetID%>"><%=assetID%></option>
+                    <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetActionBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetActionBean.names.get(i)%></option>
                     <% }                                                     %>
                 </select>
             </div>
