@@ -117,6 +117,8 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement fk = con.prepareStatement("SET FOREIGN_KEY_CHECKS=0;");
+            fk.executeUpdate();
             PreparedStatement pstmt = con.prepareStatement("INSERT INTO assets (assetID, hoa_owner, asset_type, asset_desc, "
                     + "asset_name, aquisition_date, for_rent, asset_value, asset_status, asset_locX, asset_locY, containing_asset) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

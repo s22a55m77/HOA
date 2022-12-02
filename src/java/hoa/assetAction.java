@@ -17,6 +17,7 @@ public class assetAction {
     public ArrayList<String> names = new ArrayList<>();
     public String name;
     public assets asset = new assets();
+    public int newAssetID;
     
     public int getAsset(int ID) {
         assets asset2 = new assets();
@@ -142,14 +143,24 @@ public class assetAction {
         }
     }
     
-    public int register(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID) {
+    public int register(boolean for_rent, double asset_value, String asset_status, String date, String desc, String type,
+                        double asset_locX, double asset_locY, String hoaname, String name, int contain) {
         assets a = new assets();
-        a.assetID = ID;
+        getNewAssetID();
+        a.assetID = newAssetID;
         a.for_rent = for_rent;
+        a.aquisition_date = date;
+        a.asset_desc = desc;
+        a.asset_type = a.getType(type);
         a.asset_value = asset_value;
         a.asset_status = a.getStatus(asset_status);
         a.asset_locX = asset_locX;
         a.asset_locY = asset_locY;
+        a.hoa_owner = hoaname;
+        a.asset_name = name;
+        a.containing_asset = contain;
+        
+        a.addAsset();
         return 1;
 }
     public int update(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID) {
@@ -209,4 +220,24 @@ public class assetAction {
         }
     }
    
+    public int getNewAssetID() {
+        try {
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SELECT MAX(assetID) as newNum FROM assets");
+
+            // first param = place of questionmark
+            // second param = value
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                newAssetID = rs.getInt("newNum") + 1;
+            }
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on assetAction, getNewAssetID" + e.getMessage());
+            return 0;
+        }
+    }
 }
