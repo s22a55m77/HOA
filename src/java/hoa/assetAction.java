@@ -70,13 +70,40 @@ public class assetAction {
         }
     }
     
+    public int getAssetNamesForDelete() {
+        try {
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
+            PreparedStatement   sqlstatement = conn.prepareStatement("SELECT assetID, asset_name\n" +
+                                                                    "FROM assets\n" +
+                                                                    "WHERE assetID NOT IN (SELECT assetID \n" +
+                                                                    "                      FROM asset_activities)\n" +
+                                                                    "AND assetID NOT IN (SELECT assetID \n" +
+                                                                    "		         FROM asset_rentals)\n" +
+                                                                    "ORDER BY asset_name, assetID;");
+            ResultSet rs = sqlstatement.executeQuery();
+            assetID.clear();
+            names.clear();
+            while (rs.next()) {
+                assetID.add(rs.getInt("assetID"));
+                names.add(rs.getString("asset_name"));
+            }
+            sqlstatement.close();
+            conn.close();
+            return 1;    
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
     public int getAssetNamesForDispose() {
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?user=root&password=12345678&useTimezone=true&serverTimezone=UTC&useSSL=false");
             PreparedStatement   sqlstatement = conn.prepareStatement("SELECT a.assetID, a.asset_name\n" +
                                                                     "FROM assets a\n" +
-                                                                    "WHERE a.for_rent=0\n" +
+                                                                    "WHERE a.asset_status='F'\n" +
                                                                     "ORDER BY a.asset_name, a.assetID;");
             ResultSet rs = sqlstatement.executeQuery();
             assetID.clear();
@@ -129,8 +156,26 @@ public class assetAction {
         return 1;
     }
     
-    public int delete() {
-        return 1;
+    public int delete(int assetID) {
+        try {
+            Connection con;
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            PreparedStatement pstmt = con.prepareStatement("SET FOREIGN_KEY_CHECKS=0;");
+            pstmt.executeUpdate();
+            pstmt = con.prepareStatement("DELETE FROM assets WHERE assetID = ?");
+
+            // first param = place of questionmark
+            // second param = value
+            pstmt.setInt(1, assetID);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("error on assetAction, delete" + e.getMessage());
+            return 0;
+        }
+
     }
     
     public int dispose(int assetID) {

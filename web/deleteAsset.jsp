@@ -5,13 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Delete Asset</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:useBean id="assetActionBean" class="hoa.assetAction" scope="session" />
+        <%assetActionBean.getAssetNamesForDelete(); %>
+        <form name="deleteAssetProcess" action="deleteAssetProcess.jsp" method="POST">
+            <div>
+                Select Asset to delete
+                <select name="assetID" id="assetID">
+                    <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
+                    <%     int assetID = assetActionBean.assetID.get(i);                    %>
+                    <option value ="<%=assetID%>"><%=assetActionBean.names.get(i)%></option>
+                    <% }                                                     %>
+                </select>
+            </div>
+            <input type="submit" value="Select" name="deleteAssetProcess">
+        </form>
     </body>
 </html>
