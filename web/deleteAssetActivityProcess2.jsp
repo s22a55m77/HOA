@@ -30,20 +30,20 @@
         
             <div>
                 Select Asset 
-                <select name="assetID" id="assetID">           
+                <select name="assetID" id="assetID" readonly>           
                     <option value ="<%=assetID%>"><%=assetActionBean.name%></option>
                 </select>
             </div>
                 
             <div>
                 Select Date
-                <select name="activity_date" id="activity_date">
+                <select name="activity_date" id="activity_date" readonly>
                     <option value ="<%=activity_date%>"><%=activity_date%></option>
                 </select>
             </div>
                 
             <div>Change Status to Deleted
-                <select name="status" id="status">
+                <select name="status" id="status" readonly>
                     <option value ="D" <% if(assetActivityBean.status.name() == "D") {%> selected="selected" <%} %>>Deleted</option>
                 </select>
             </div>
