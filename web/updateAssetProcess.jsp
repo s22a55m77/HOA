@@ -29,11 +29,15 @@
         %>
         <form name="update_asset" action="updateAssetSave.jsp" method="POST">
             <label for="aname:">Asset Name</label>
-            <input type="text" id ="aname" name="aname" readonly value="<%=assetActionBean.name%>"><br><br>
+            <select id ="aname" name="aname" readonly >
+                <option value="<%=assetID%>"> <%=assetActionBean.name%> </option>
+            </select><br><br>
+            
             <select id="arent" name="arent">
                 <option value="For Rent" <%if(assetBean.for_rent == true) { %> selected="selected" <%}%>>For Rent</option>
                 <option value="Not For Rent" <%if(assetBean.for_rent == false) { %> selected="selected" <%}%> >Not For Rent</option>
             </select><br><br>
+           
             <label for="avalue">Asset Value</label>
             <input type="text" id ="avalue" name="avalue" readonly value="<%=assetBean.asset_value%>"><br><br>
             
@@ -44,8 +48,13 @@
                 <option value="F" <%if(assetBean.asset_status.name() == "F") { %> selected="selected" <%}%>>For Repair</option>
                 <option value="I" <%if(assetBean.asset_status.name() == "I") { %> selected="selected" <%}%>>For Disposal</option>
             </select><br><br>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location"><br><br>
+            
+            <label for="location">Location X</label>
+            <input type="text" id="locationX" name="locationX" value="<%=assetBean.asset_locX%>"><br><br>
+            
+            <label for="location">Location Y</label>
+            <input type="text" id="locationY" name="locationY" value="<%=assetBean.asset_locY%>"><br><br>
+            
             <input type="submit" value="Submit">
         </form>
     </body>
