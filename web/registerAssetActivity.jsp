@@ -69,10 +69,10 @@
             </div>
             <div>Select status 
                 <select name="status" id="status">
-                    <option value ="Scheduled">Scheduled</option>
-                    <option value ="Ongoing">Ongoing</option>  
-                    <option value ="Completed">Completed</option>  
-                    <option value ="Deleted">Deleted</option>
+                    <option value ="S">Scheduled</option>
+                    <option value ="O">Ongoing</option>  
+                    <option value ="C">Completed</option>  
+                    <option value ="D">Deleted</option>
                 </select>
             </div>
             <input type="submit" value="registerAssetActivity" name="registerAssetActivity">
