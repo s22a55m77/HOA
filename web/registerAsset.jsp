@@ -14,16 +14,18 @@
     <body>
         <!--TODO/-->
         <!--Provide input box for entering of variables/-->
+        <jsp:useBean id="assetBean" class="hoa.assets" scope="session" />
+        <% assetBean.addAsset(); %>
         <form name="register" action="registerAssetSave.jsp" method="POST">
-            <label for="aname:">Asset Name</label>
-            <input type="text" id ="aname" name="aname"><br><br>
-            <label for="adesc:">Asset Description</label><br>
-            <textarea description="adesc" rows="10" cols="30">
+            <label for="assetBean.addAsset.asset_name">Asset Name</label>
+            <input type="text" id ="assetBean.addAsset.asset_name" name="assetBean.addAsset.asset_name"><br><br>
+            <label for="assetBean.addAsset.asset_desc">Asset Description</label><br>
+            <textarea description="assetBean.addAsset.asset_desc" rows="10" cols="30">
             </textarea><br>
-            <label for="aDate:">Acquisition Date</label>
-            <input type="date" id ="aDate" name="aDate"><br><br>
-            <label for="arent:">Renting availability</label>
-            <select id="arent" name="arent">
+            <label for="assetBean.addAsset.aquisition_date">Acquisition Date</label>
+            <input type="date" id ="assetBean.addAsset.aquisition_date" name="assetBean.assets.aquisition_date"><br><br>
+            <label for="assetBean:">Renting availability</label>
+            <select id="assetBean.addAsset.for_rent" name="assetBean.addAsset.for_rent">
                 <option value="For Rent">For Rent</option>
                 <option value="Not For Rent">Not For Rent</option>
             </select><br><br>
