@@ -163,7 +163,7 @@ public class assetAction {
         a.addAsset();
         return 1;
 }
-    public int update(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID) {
+    public int update(boolean for_rent, double asset_value, String asset_status, double asset_locX, double asset_locY, int ID, int con) {
         assets a = new assets();
         a.assetID = ID;
         a.for_rent = for_rent;
@@ -171,6 +171,7 @@ public class assetAction {
         a.asset_status = a.getStatus(asset_status);
         a.asset_locX = asset_locX;
         a.asset_locY = asset_locY;
+        a.containing_asset = con; 
         
         a.modAsset();
         

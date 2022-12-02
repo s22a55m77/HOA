@@ -153,7 +153,9 @@ public class assets {
         try {
             Connection con;
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HAMS?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
-            PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?"
+            PreparedStatement fk = con.prepareStatement("SET FOREIGN_KEY_CHECKS=0;");
+            fk.executeUpdate();
+            PreparedStatement pstmt = con.prepareStatement("UPDATE assets SET for_rent=?, asset_value=?, asset_status=?, asset_locX=?, asset_locY=?, containing_asset=?"
                     + "WHERE assetID=?");
 
             // first param = place of questionmark
@@ -164,7 +166,8 @@ public class assets {
             pstmt.setString(3, getStatus(asset_status));
             pstmt.setDouble(4, asset_locX);
             pstmt.setDouble(5, asset_locY);
-            pstmt.setInt(6, assetID);
+            pstmt.setDouble(6, containing_asset);
+            pstmt.setInt(7, assetID);
             pstmt.executeUpdate();
             pstmt.close();
             con.close();

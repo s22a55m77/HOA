@@ -21,6 +21,7 @@
             String activity_date = request.getParameter("activity_date");
             assetID = Integer.parseInt(s_assetID);
             assetActionBean.getAssetName(assetID);
+            assetActionBean.getAssetNames();
             
             assetBean.assetID = assetID;
             assetBean.viewAsset();
@@ -54,6 +55,15 @@
             <label for="location">Location Y</label>
             <input type="text" id="locationY" name="locationY" value="<%=assetBean.asset_locY%>"><br><br>
             
+            
+            Containing Asset:
+            <select name="containing_asset" id="containing_asset">
+                <option value ="" <%if(assetBean.containing_asset == 9999999) { %> selected="selected" <%}%>>None</option>
+                <% for (int i=0; i<assetActionBean.assetID.size(); i++) {     %>
+                <%     int conassets = assetActionBean.assetID.get(i);                    %>
+                <option value ="<%=conassets%>" <%if(assetBean.containing_asset == conassets) { %> selected="selected" <%}%>><%=assetActionBean.names.get(i)%></option>
+                <% }                                                     %>   
+            </select>
             <input type="submit" value="Submit">
         </form>
     </body>
