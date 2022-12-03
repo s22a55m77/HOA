@@ -56,8 +56,8 @@
                 <option value="I">For Disposal</option>
                 <option value="P">Disposed</option>
             </select><br><br>
-        Asset Location: <input type="number" id="asset_locX" name="asset_locX">
-        <input type="number" id="asset_locY" name="asset_locY"><br><br>
+        Asset Location: <input type="number" id="asset_locX" name="asset_locX" step=".00001">
+        <input type="number" id="asset_locY" name="asset_locY" step=".00001"><br><br>
         
         Containing Asset:
         <select name="containing_asset" id="containing_asset">
